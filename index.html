@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pickles Robinhood Agent | $PICKLES</title>
+  <meta name="description" content="Pickles Robinhood Agent brings clever trades, chaotic memes, and fearless feline energy to Robinhood. Buy $PICKLES on Robinhood Chain." />
+  <meta name="theme-color" content="#07140c" />
+  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta property="og:title" content="Pickles Robinhood Agent | $PICKLES" />
+  <meta property="og:description" content="Clever trades, chaotic memes, and fearless feline energy on Robinhood Chain." />
+  <meta property="og:image" content="banner.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="banner.jpg" />
+  <link rel="preload" as="image" href="banner.jpg" />
+  <link rel="preload" as="image" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Fredoka:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            moss: {
+              950: "#07140c",
+              900: "#0c2214",
+              800: "#14331e",
+              700: "#1c4a2a",
+              600: "#246338"
+            },
+            leaf: {
+              300: "#8ef0a4",
+              400: "#4ee078",
+              500: "#2db85a",
+              600: "#1f8a45"
+            },
+            gold: {
+              200: "#ffe99a",
+              300: "#f4c430",
+              400: "#e0b01a",
+              600: "#a67c12",
+              800: "#6b4e0c"
+            },
+            cream: {
+              50: "#fff8ee",
+              100: "#f7f3ea",
+              200: "#e8dfc8"
+            },
+            feather: "#e23a3a",
+            sky: "#4da6ff"
+          },
+          fontFamily: {
+            display: ["Cinzel", "Georgia", "serif"],
+            cat: ["Fredoka", "system-ui", "sans-serif"],
+            pixel: ['"Press Start 2P"', "monospace"],
+            mono: ['"JetBrains Mono"', "ui-monospace", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { color-scheme: dark; }
+    html, body { background: #07140c; }
+    body {
+      font-family: Fredoka, system-ui, sans-serif;
+      color: #f7f3ea;
+      overflow-x: hidden;
+    }
+    ::selection { background: #f4c430; color: #07140c; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #07140c; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(#2db85a, #f4c430);
+      border-radius: 99px;
+      border: 2px solid #07140c;
+    }
+
+    .forest-fixed {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(7,20,12,.42) 0%, rgba(7,20,12,.72) 48%, rgba(5,14,10,.94) 100%),
+        url("forest-bg.jpg") center / cover no-repeat;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      pointer-events: none;
+      opacity: .08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .pixel {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+
+    .sprite-knockout { mix-blend-mode: screen; }
+
+    .medallion {
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,233,154,.35), transparent 42%),
+        radial-gradient(circle at 50% 50%, #0a1a10 0%, #050c08 70%);
+      border: 3px solid #f4c430;
+      box-shadow:
+        0 0 0 4px #6b4e0c,
+        0 0 28px rgba(244,196,48,.35),
+        inset 0 0 18px rgba(46,184,90,.2);
+    }
+
+    .quest-card {
+      background:
+        linear-gradient(165deg, rgba(244,196,48,.12), rgba(7,20,12,.88) 40%),
+        rgba(12,34,20,.78);
+      border: 2px solid rgba(244,196,48,.38);
+      box-shadow:
+        0 16px 40px rgba(0,0,0,.4),
+        inset 0 1px 0 rgba(255,248,238,.12);
+      backdrop-filter: blur(14px);
+      position: relative;
+    }
+    .quest-card::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      pointer-events: none;
+      border: 1px solid rgba(46,184,90,.28);
+      border-radius: inherit;
+    }
+
+    .btn-buy {
+      background: linear-gradient(180deg, #ffe99a 0%, #f4c430 38%, #e0b01a 72%, #c9a227 100%);
+      color: #07140c;
+      font-family: Cinzel, Georgia, serif;
+      font-weight: 800;
+      letter-spacing: .08em;
+      box-shadow: 0 5px 0 #6b4e0c, 0 14px 28px rgba(244,196,48,.32);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-buy::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.55) 50%, transparent 70%);
+      transform: translateX(-120%);
+      animation: shine 3.6s ease-in-out infinite;
+    }
+    .btn-buy:hover { transform: translateY(-2px); filter: brightness(1.06); }
+    .btn-buy:active { transform: translateY(4px); box-shadow: 0 1px 0 #6b4e0c; }
+
+    .btn-chart {
+      background: rgba(247,243,234,.08);
+      border: 2px solid rgba(244,196,48,.55);
+      color: #fff8ee;
+      font-family: Cinzel, Georgia, serif;
+      font-weight: 800;
+      letter-spacing: .08em;
+      backdrop-filter: blur(10px);
+    }
+    .btn-chart:hover { background: rgba(244,196,48,.16); transform: translateY(-2px); }
+
+    .nav-glass {
+      background: rgba(7,20,12,.18);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(244,196,48,.14);
+    }
+    .nav-glass.scrolled {
+      background: rgba(7,20,12,.92);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    .ca-pill {
+      background: rgba(5,12,8,.72);
+      border: 1px solid rgba(244,196,48,.4);
+      box-shadow: inset 0 0 0 1px rgba(46,184,90,.18), 0 8px 24px rgba(0,0,0,.28);
+    }
+
+    .wax-seal {
+      background: radial-gradient(circle at 35% 30%, #ff6b6b, #e23a3a 55%, #9b1c1c);
+      color: #fff8ee;
+      box-shadow: 0 4px 0 #6b1212, 0 8px 16px rgba(226,58,58,.35);
+      font-family: Cinzel, Georgia, serif;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    .leaf, .firefly {
+      position: absolute;
+      pointer-events: none;
+    }
+    .leaf {
+      width: 14px;
+      height: 10px;
+      background: #2db85a;
+      border-radius: 0 80% 0 80%;
+      opacity: .7;
+      animation: fall linear infinite;
+    }
+    .firefly {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #ffe99a;
+      box-shadow: 0 0 10px #f4c430, 0 0 18px #ffe99a;
+      animation: glow 3.4s ease-in-out infinite;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 5.5rem;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 90;
+      opacity: 0;
+      pointer-events: none;
+      transition: .28s ease;
+      background: #f4c430;
+      color: #07140c;
+      font-weight: 700;
+      padding: .75rem 1.15rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @keyframes shine {
+      0%, 55% { transform: translateX(-120%); }
+      75%, 100% { transform: translateX(120%); }
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      12% { opacity: .75; }
+      100% { transform: translateY(110vh) rotate(220deg); opacity: 0; }
+    }
+    @keyframes glow {
+      0%, 100% { opacity: .25; transform: scale(.8); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+    @keyframes pawdash {
+      to { stroke-dashoffset: -28; }
+    }
+
+    .floaty { animation: floaty 4.2s ease-in-out infinite; }
+
+    .path-line {
+      stroke-dasharray: 6 10;
+      animation: pawdash 1.6s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .floaty, .leaf, .firefly, .marquee-track, .btn-buy::after, .path-line { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="forest-fixed" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div id="fx" class="fixed inset-0 z-[1] pointer-events-none overflow-hidden" aria-hidden="true"></div>
+
+  <div id="toast" class="toast font-cat text-sm" role="status"><span data-toast-msg>Copied.</span></div>
+
+  <header id="nav" class="nav-glass fixed top-0 inset-x-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-[4.4rem] flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2.5 group">
+        <span class="medallion inline-flex rounded-full p-[2px]">
+          <img src="logo.png" alt="Pickles logo" class="pixel w-10 h-10 rounded-full object-cover" />
+        </span>
+        <span>
+          <span class="block font-display font-extrabold text-sm sm:text-base leading-none tracking-wide text-cream-50 group-hover:text-gold-300 transition">Pickles</span>
+          <span class="block font-pixel text-[8px] text-gold-300 mt-1 tracking-widest">$PICKLES</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-cream-100/80">
+        <a href="#about" class="hover:text-gold-300 transition">About</a>
+        <a href="#buy" class="hover:text-gold-300 transition">How to Buy</a>
+        <a href="#chart" class="hover:text-gold-300 transition">Chart</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="https://x.com/PicklesAgentX" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full overflow-hidden border border-gold-300/40 bg-black hover:scale-105 transition" aria-label="Pickles on X">
+          <img src="x.png" alt="" class="w-full h-full object-cover" />
+        </a>
+        <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-buy hidden sm:inline-flex items-center rounded-full px-5 py-2.5 text-sm">Buy Now</a>
+        <button id="menuBtn" type="button" class="md:hidden w-10 h-10 rounded-full border border-gold-300/40 text-gold-300" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <svg class="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-gold-300/15 bg-moss-950/95 px-4 py-4 space-y-3">
+      <a href="#about" class="block py-2 font-semibold">About</a>
+      <a href="#buy" class="block py-2 font-semibold">How to Buy</a>
+      <a href="#chart" class="block py-2 font-semibold">Chart</a>
+      <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-buy block text-center rounded-full py-3">Buy Now</a>
+    </div>
+  </header>
+
+  <div class="relative z-10 mt-[4.4rem] overflow-hidden border-y border-gold-300/20 bg-moss-950/70">
+    <div class="marquee-track py-2 text-[11px] font-semibold tracking-[0.22em] uppercase text-gold-300/90">
+      <span class="px-6">$PICKLES</span><span class="px-6">•</span>
+      <span class="px-6">Clever Trades</span><span class="px-6">•</span>
+      <span class="px-6">Chaotic Memes</span><span class="px-6">•</span>
+      <span class="px-6">Fearless Feline Energy</span><span class="px-6">•</span>
+      <span class="px-6">Robinhood Chain</span><span class="px-6">•</span>
+      <span class="px-6">Sherwood Agent</span><span class="px-6">•</span>
+      <span class="px-6">$PICKLES</span><span class="px-6">•</span>
+      <span class="px-6">Clever Trades</span><span class="px-6">•</span>
+      <span class="px-6">Chaotic Memes</span><span class="px-6">•</span>
+      <span class="px-6">Fearless Feline Energy</span><span class="px-6">•</span>
+      <span class="px-6">Robinhood Chain</span><span class="px-6">•</span>
+      <span class="px-6">Sherwood Agent</span><span class="px-6">•</span>
+    </div>
+  </div>
+
+  <main id="top" class="relative z-10">
+    <section class="relative min-h-[calc(100svh-6.2rem)] flex items-end">
+      <img src="banner.jpg" alt="Pickles the Robin Hood cat drawing a golden bow in a sunlit forest" class="absolute inset-0 w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-t from-moss-950 via-moss-950/55 to-moss-950/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-moss-950/50 via-transparent to-moss-950/40"></div>
+
+      <div class="relative w-full max-w-7xl mx-auto px-4 sm:px-6 pb-16 sm:pb-20 pt-24">
+        <div class="max-w-3xl">
+          <div class="floaty inline-block mb-5">
+            <span class="medallion inline-flex rounded-full p-1.5">
+              <img src="logo.png" alt="Pickles Robinhood Agent" class="pixel w-28 h-28 sm:w-36 sm:h-36 rounded-full object-cover" />
+            </span>
+          </div>
+
+          <p class="font-pixel text-[9px] sm:text-[10px] text-leaf-400 tracking-[0.28em] mb-3">ROBINHOOD CHAIN AGENT</p>
+          <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl leading-[0.95] text-cream-50">
+            Pickles<br />
+            <span class="text-gold-300">Robinhood Agent</span>
+          </h1>
+          <p class="mt-3 font-pixel text-[11px] sm:text-sm text-leaf-300">$PICKLES</p>
+          <p class="mt-5 text-base sm:text-xl text-cream-100/90 leading-relaxed max-w-xl">
+            Pickles Robinhood Agent brings clever trades, chaotic memes, and fearless feline energy to Robinhood.
+          </p>
+
+          <div class="mt-7 ca-pill rounded-full px-3 py-2 sm:px-4 sm:py-2.5 flex items-center gap-2 max-w-full w-fit">
+            <span class="text-[10px] font-bold tracking-[0.2em] text-leaf-400 pl-2">CA</span>
+            <code id="caText" class="font-mono text-xs sm:text-sm text-gold-200 truncate max-w-[9.5rem] sm:max-w-[16rem]">0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda</code>
+            <button type="button" onclick="copyCA()" class="shrink-0 rounded-full bg-gold-300 text-moss-950 font-bold text-xs sm:text-sm px-3.5 py-1.5 hover:bg-gold-200 transition">
+              Copy
+            </button>
+          </div>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-buy inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-lg">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 12l7-8 2 6h7l-7 8-2-6H4z"/></svg>
+              Buy Now
+            </a>
+            <a href="https://dexscreener.com/robinhood/0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-chart inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-lg">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 5-7"/></svg>
+              Chart
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative -mt-1 bg-moss-950/80 border-y border-gold-300/15">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="quest-card rounded-2xl px-4 py-4 text-center">
+          <div class="text-[10px] tracking-[0.22em] font-bold text-leaf-400">NAME</div>
+          <div class="font-display text-lg sm:text-xl mt-1 leading-tight">Pickles Agent</div>
+        </div>
+        <div class="quest-card rounded-2xl px-4 py-4 text-center">
+          <div class="text-[10px] tracking-[0.22em] font-bold text-leaf-400">SYMBOL</div>
+          <div class="font-display text-lg sm:text-xl mt-1">PICKLES</div>
+        </div>
+        <div class="quest-card rounded-2xl px-4 py-4 text-center">
+          <div class="text-[10px] tracking-[0.22em] font-bold text-leaf-400">CHAIN</div>
+          <div class="font-display text-lg sm:text-xl mt-1">Robinhood</div>
+        </div>
+        <div class="quest-card rounded-2xl px-4 py-4 text-center">
+          <div class="text-[10px] tracking-[0.22em] font-bold text-leaf-400">QUOTE</div>
+          <div class="font-display text-lg sm:text-xl mt-1">ETH</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="relative py-20 sm:py-28 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-3xl mx-auto">
+          <p class="font-pixel text-[9px] text-gold-300 tracking-[0.28em]">AGENT DOSSIER</p>
+          <h2 class="font-display text-4xl sm:text-6xl mt-3 leading-none">The cat who robbed the chart</h2>
+          <p class="mt-5 text-lg text-cream-100/85 leading-relaxed">
+            Pickles Robinhood Agent brings clever trades, chaotic memes, and fearless feline energy to Robinhood.
+            He is the Sherwood archer of on-chain chaos — a gray cat in a green hat who treats every candle like a hunt.
+          </p>
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-3 gap-6">
+          <article class="quest-card rounded-[1.7rem] p-6 sm:p-7">
+            <div class="flex items-center justify-between">
+              <span class="wax-seal w-12 h-12 rounded-full grid place-items-center text-lg">CT</span>
+              <img src="paw.jpg" alt="" class="w-10 h-10 object-contain sprite-knockout" />
+            </div>
+            <h3 class="font-display text-2xl mt-5">Clever Trades</h3>
+            <p class="mt-3 text-cream-100/80 leading-relaxed">
+              Sharp as a gold arrow. Pickles reads the forest of liquidity, then looses the shot.
+              No hesitation, no kings — just a clean swap on Robinhood Chain.
+            </p>
+          </article>
+          <article class="quest-card rounded-[1.7rem] p-6 sm:p-7">
+            <div class="flex items-center justify-between">
+              <span class="wax-seal w-12 h-12 rounded-full grid place-items-center text-lg">CM</span>
+              <img src="paw.jpg" alt="" class="w-10 h-10 object-contain sprite-knockout" />
+            </div>
+            <h3 class="font-display text-2xl mt-5">Chaotic Memes</h3>
+            <p class="mt-3 text-cream-100/80 leading-relaxed">
+              Pickle energy. Pixel feathers. Unhinged forest lore.
+              The agent spreads memes the way a cat knocks treasure off the table — on purpose.
+            </p>
+          </article>
+          <article class="quest-card rounded-[1.7rem] p-6 sm:p-7">
+            <div class="flex items-center justify-between">
+              <span class="wax-seal w-12 h-12 rounded-full grid place-items-center text-lg">FF</span>
+              <img src="paw.jpg" alt="" class="w-10 h-10 object-contain sprite-knockout" />
+            </div>
+            <h3 class="font-display text-2xl mt-5">Fearless Feline</h3>
+            <p class="mt-3 text-cream-100/80 leading-relaxed">
+              Tiny cat. Giant cape. Zero chill.
+              $PICKLES is the rallying cry of every degen who would rather hunt with whiskers than wait for permission.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="buy" class="relative py-20 sm:py-28 bg-moss-950/70 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="font-pixel text-[9px] text-gold-300 tracking-[0.28em]">THE HUNT</p>
+          <h2 class="font-display text-4xl sm:text-6xl mt-3 leading-none">How to Buy $PICKLES</h2>
+          <p class="mt-4 text-lg text-cream-100/80">Four steps. Robinhood ETH in. Feline chaos out.</p>
+        </div>
+
+        <div class="relative mt-14">
+          <svg class="hidden xl:block absolute top-[7.5rem] left-[12%] right-[12%] h-6 z-0" viewBox="0 0 1000 24" fill="none" aria-hidden="true" preserveAspectRatio="none">
+            <path class="path-line" d="M0 12 C 160 12, 180 12, 333 12 S 500 12, 666 12 S 840 12, 1000 12" stroke="#f4c430" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+          </svg>
+
+          <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6 relative z-10">
+            <article class="quest-card rounded-[1.8rem] overflow-hidden flex flex-col">
+              <div class="relative bg-black">
+                <img src="step-1.jpg" alt="Pickles holding a wallet and phone" class="pixel sprite-knockout w-full aspect-square object-cover" />
+                <span class="wax-seal absolute top-3 left-3 w-11 h-11 rounded-full grid place-items-center text-xl">1</span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-display text-2xl leading-none">Draw the wallet</h3>
+                <p class="text-xs font-bold tracking-[0.16em] text-leaf-400 uppercase mt-1">Create a wallet</p>
+                <p class="mt-3 text-sm leading-relaxed text-cream-100/80">
+                  Grab <strong>Robinhood Wallet</strong> (the chain is built in) or MetaMask / Rabby.
+                  Add Robinhood Chain so Pickles can find you.
+                </p>
+                <dl class="mt-4 text-[11px] font-mono bg-moss-950 text-cream-100 rounded-xl p-3 space-y-1 border border-gold-300/20">
+                  <div class="flex justify-between gap-2"><dt class="text-gold-300">Network</dt><dd>Robinhood Chain</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-gold-300">Chain ID</dt><dd>4663</dd></div>
+                  <div class="flex justify-between gap-2 items-center">
+                    <dt class="text-gold-300">RPC</dt>
+                    <dd class="truncate max-w-[9.5rem]">rpc.mainnet.chain.robinhood.com</dd>
+                  </div>
+                  <div class="flex justify-between gap-2"><dt class="text-gold-300">Gas</dt><dd>ETH</dd></div>
+                </dl>
+              </div>
+            </article>
+
+            <article class="quest-card rounded-[1.8rem] overflow-hidden flex flex-col">
+              <div class="relative bg-black">
+                <img src="step-2.jpg" alt="Pickles holding an ETH coin and a sack of gold" class="pixel sprite-knockout w-full aspect-square object-cover" />
+                <span class="wax-seal absolute top-3 left-3 w-11 h-11 rounded-full grid place-items-center text-xl">2</span>
+              </div>
+              <div class="p-5 flex-1">
+                <h3 class="font-display text-2xl leading-none">Load the quiver</h3>
+                <p class="text-xs font-bold tracking-[0.16em] text-leaf-400 uppercase mt-1">Get Robinhood ETH</p>
+                <p class="mt-3 text-sm leading-relaxed text-cream-100/80">
+                  Bridge ETH onto Robinhood Chain. That ETH pays gas and funds the swap.
+                  No ETH on this chain, no $PICKLES in the bag.
+                </p>
+                <p class="mt-4 text-xs font-semibold text-cream-200/70">
+                  Bridge from Ethereum via Uniswap or the Arbitrum portal, or buy with Robinhood Connect. Confirm the balance on Robinhood Chain.
+                </p>
+              </div>
+            </article>
+
+            <article class="quest-card rounded-[1.8rem] overflow-hidden flex flex-col">
+              <div class="relative bg-black">
+                <img src="step-3.jpg" alt="Pickles holding a sealed parchment map of the contract" class="pixel sprite-knockout w-full aspect-square object-cover" />
+                <span class="wax-seal absolute top-3 left-3 w-11 h-11 rounded-full grid place-items-center text-xl">3</span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-display text-2xl leading-none">Mark the target</h3>
+                <p class="text-xs font-bold tracking-[0.16em] text-leaf-400 uppercase mt-1">Copy the official CA</p>
+                <p class="mt-3 text-sm leading-relaxed text-cream-100/80">
+                  Open Uniswap, connect, switch to Robinhood Chain, then paste the $PICKLES contract.
+                  Never buy from a ticker search — copycats hide in the trees.
+                </p>
+                <button type="button" onclick="copyCA()" class="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-moss-950 text-cream-50 px-4 py-2.5 text-sm font-bold hover:bg-moss-800 border border-gold-300/40">
+                  Copy CA · <span class="font-mono text-gold-300" data-ca>0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda</span>
+                </button>
+              </div>
+            </article>
+
+            <article class="quest-card rounded-[1.8rem] overflow-hidden flex flex-col">
+              <div class="relative bg-black">
+                <img src="step-4.jpg" alt="Pickles loosing a golden arrow" class="pixel sprite-knockout w-full aspect-square object-cover" />
+                <span class="wax-seal absolute top-3 left-3 w-11 h-11 rounded-full grid place-items-center text-xl">4</span>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <h3 class="font-display text-2xl leading-none">Loose the arrow</h3>
+                <p class="text-xs font-bold tracking-[0.16em] text-leaf-400 uppercase mt-1">Swap ETH for $PICKLES</p>
+                <p class="mt-3 text-sm leading-relaxed text-cream-100/80">
+                  Swap Robinhood ETH for $PICKLES. Review the quote, confirm, and let the cat take the shot.
+                  Hunt complete.
+                </p>
+                <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-buy mt-4 rounded-full px-4 py-3 text-center text-base">Buy Now</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chart" class="relative py-20 sm:py-28 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+          <div>
+            <p class="font-pixel text-[9px] text-gold-300 tracking-[0.28em]">LIVE RANGE</p>
+            <h2 class="font-display text-4xl sm:text-5xl mt-2 leading-none">$PICKLES Chart</h2>
+            <p class="mt-2 text-cream-100/75">Dexscreener on Robinhood Chain. The hunt, in real time.</p>
+          </div>
+          <a href="https://dexscreener.com/robinhood/0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-chart rounded-full px-6 py-3 text-base inline-flex items-center justify-center gap-2 w-fit">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 5-7"/></svg>
+            Open Chart
+          </a>
+        </div>
+
+        <div class="quest-card rounded-[2rem] p-[10px]">
+          <div class="rounded-[1.45rem] overflow-hidden bg-black">
+            <style>
+              #dexscreener-embed { position: relative; width: 100%; padding-bottom: 125%; }
+              @media (min-width: 1400px) { #dexscreener-embed { padding-bottom: 65%; } }
+              #dexscreener-embed iframe { position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: 0; }
+            </style>
+            <div id="dexscreener-embed">
+              <iframe title="Dexscreener $PICKLES chart" src="https://dexscreener.com/robinhood/0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda?embed=1&loadChartSettings=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative py-20 overflow-hidden">
+      <img src="banner.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-[center_30%] scale-105" />
+      <div class="absolute inset-0 bg-moss-950/78"></div>
+      <div class="relative max-w-3xl mx-auto px-4 text-center">
+        <span class="medallion inline-flex rounded-full p-1">
+          <img src="logo.png" alt="" class="pixel w-24 h-24 rounded-full object-cover" />
+        </span>
+        <h2 class="font-display text-4xl sm:text-6xl mt-6 leading-none">Join the hunt</h2>
+        <p class="mt-4 text-lg text-cream-100/85">
+          Clever trades. Chaotic memes. Fearless feline energy. Straight to Robinhood.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-buy rounded-full px-8 py-4 text-xl">Buy Now</a>
+          <a href="https://x.com/PicklesAgentX" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-full bg-cream-50 text-moss-950 font-display font-extrabold px-8 py-4 text-xl hover:scale-[1.02] transition">
+            <img src="x.png" alt="" class="w-6 h-6 rounded-full object-cover" />
+            @PicklesRobin
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative z-10 bg-black/80 text-cream-200 border-t-4 border-gold-400 pb-24 md:pb-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row gap-8 md:items-center md:justify-between">
+      <div class="flex items-center gap-3">
+        <span class="medallion rounded-full p-[2px] inline-flex">
+          <img src="logo.png" alt="" class="pixel w-12 h-12 rounded-full object-cover" />
+        </span>
+        <div>
+          <div class="font-display text-2xl text-cream-50 leading-none">Pickles Robinhood Agent</div>
+          <div class="font-pixel text-[8px] tracking-[0.2em] text-gold-300 mt-1">$PICKLES</div>
+        </div>
+      </div>
+      <p class="text-xs leading-relaxed max-w-xl text-cream-200/70">
+        $PICKLES is a meme. Not financial advice, not a promise, not a royal charter from Sherwood.
+        Crypto is risky. Do your own research. The cat will keep hunting either way.
+      </p>
+      <a href="https://x.com/PicklesAgentX" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-full overflow-hidden bg-cream-50 shrink-0" aria-label="X">
+        <img src="x.png" alt="" class="w-full h-full object-cover rounded-full" />
+      </a>
+    </div>
+    <div class="border-t border-white/10 py-4 text-center text-[11px] font-bold tracking-wide text-cream-200/50">
+      © 2026 Pickles Robinhood Agent · Fearless feline energy on Robinhood
+    </div>
+  </footer>
+
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-40 p-3 bg-gradient-to-t from-moss-950 via-moss-950/95 to-transparent">
+    <div class="flex gap-2">
+      <button type="button" onclick="copyCA()" class="flex-1 rounded-full bg-moss-950 border border-gold-300/40 text-cream-50 font-bold py-3 text-sm">
+        Copy CA
+      </button>
+      <a href="https://app.uniswap.org/swap?chain=robinhood&outputCurrency=0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda" target="_blank" rel="noopener noreferrer" class="btn-buy flex-[1.4] rounded-full py-3 text-center text-base">Buy Now</a>
+    </div>
+  </div>
+
+  <script>
+    const CA = "0x87a6416ed64edbf13ff8f2b9bb35e2977565dcda";
+
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.querySelector("[data-toast-msg]").textContent = msg;
+      el.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
+    }
+
+    async function copyCA() {
+      try {
+        await navigator.clipboard.writeText(CA);
+        toast("CA copied. Go hunt some $PICKLES.");
+      } catch (err) {
+        toast("Copy failed. Select the CA and copy it.");
+      }
+    }
+
+    const nav = document.getElementById("nav");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", window.scrollY > 12);
+    }, { passive: true });
+
+    menuBtn.addEventListener("click", () => {
+      const open = mobileMenu.classList.toggle("hidden") === false;
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    (function forestFx() {
+      const root = document.getElementById("fx");
+      if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      for (let i = 0; i < 14; i++) {
+        const leaf = document.createElement("span");
+        leaf.className = "leaf";
+        leaf.style.left = Math.random() * 100 + "vw";
+        leaf.style.animationDuration = 9 + Math.random() * 10 + "s";
+        leaf.style.animationDelay = -Math.random() * 12 + "s";
+        leaf.style.background = ["#2db85a", "#1f8a45", "#f4c430", "#3dd96e"][i % 4];
+        root.appendChild(leaf);
+      }
+      for (let i = 0; i < 18; i++) {
+        const fly = document.createElement("span");
+        fly.className = "firefly";
+        fly.style.left = Math.random() * 100 + "vw";
+        fly.style.top = Math.random() * 100 + "vh";
+        fly.style.animationDelay = Math.random() * 3 + "s";
+        root.appendChild(fly);
+      }
+    })();
+  </script>
+</body>
+</html>
